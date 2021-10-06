@@ -96,6 +96,7 @@ class MovingBatchNormNd(nn.Module):
         if self.affine:
             weight = self.weight.view(*self.shape).expand_as(y)
             bias = self.bias.view(*self.shape).expand_as(y)
+            y = y.to(bias.device)
             y = (y - bias) * torch.exp(-weight)
 
         used_mean = used_mean.view(*self.shape).expand_as(y)
