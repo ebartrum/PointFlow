@@ -26,6 +26,8 @@ synsetid_to_cate = {
     '04256520': 'sofa', '04330267': 'stove', '04530566': 'vessel',
     '04554684': 'washer', '02992529': 'cellphone',
     '02843684': 'birdhouse', '02871439': 'bookshelf',
+    # Animals Dataset
+    'Horses': 'Horses'
     # '02858304': 'boat', no boat in our dataset, merged into vessels
     # '02834778': 'bicycle', not in our taxonomy
 }
@@ -39,6 +41,7 @@ class Uniform15KPC(Dataset):
                  normalize_std_per_axis=False,
                  all_points_mean=None, all_points_std=None,
                  input_dim=3):
+        root_dir = os.path.expanduser(root_dir)
         self.root_dir = root_dir
         self.split = split
         self.in_tr_sample_size = tr_sample_size
