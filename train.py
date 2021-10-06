@@ -15,7 +15,7 @@ from models.networks import PointFlow
 from torch import optim
 from args import get_args
 from torch.backends import cudnn
-from utils import AverageValueMeter, set_random_seed, apply_random_rotation, save, resume, visualize_point_clouds
+from models.utils import AverageValueMeter, set_random_seed, apply_random_rotation, save, resume, visualize_point_clouds
 from tensorboardX import SummaryWriter
 from datasets import get_datasets, init_np_seed
 

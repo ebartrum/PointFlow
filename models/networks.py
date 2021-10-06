@@ -5,7 +5,7 @@ from torch import optim
 from torch import nn
 from .flow import get_point_cnf
 from .flow import get_latent_cnf
-from ..utils import truncated_normal, reduce_tensor, standard_normal_logprob
+from .utils import truncated_normal, reduce_tensor, standard_normal_logprob
 
 
 class Encoder(nn.Module):
