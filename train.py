@@ -10,7 +10,7 @@ import random
 import faulthandler
 import torch.multiprocessing as mp
 import time
-import scipy.misc
+import imageio
 from models.networks import PointFlow
 from torch import optim
 from args import get_args
@@ -187,7 +187,7 @@ def main_worker(gpu, save_dir, ngpus_per_node, args):
 
         # evaluate on the validation set
         if not args.no_validation and (epoch + 1) % args.val_freq == 0:
-            from utils import validate
+            from models.utils import validate
             validate(test_loader, model, epoch, writer, save_dir, args, clf_loaders=clf_loaders)
 
         # save visualizations
@@ -201,8 +201,7 @@ def main_worker(gpu, save_dir, ngpus_per_node, args):
                                              pert_order=train_loader.dataset.display_axis_order)
                 results.append(res)
             res = np.concatenate(results, axis=1)
-            scipy.misc.imsave(os.path.join(save_dir, 'images', 'tr_vis_conditioned_epoch%d-gpu%s.png' % (epoch, args.gpu)),
-                              res.transpose((1, 2, 0)))
+            imageio.imwrite(os.path.join(save_dir, 'images', 'tr_vis_conditioned_epoch%d-gpu%s.png' % (epoch, args.gpu)), res.transpose((1, 2, 0)))
             if writer is not None:
                 writer.add_image('tr_vis/conditioned', torch.as_tensor(res), epoch)
 
@@ -217,8 +216,7 @@ def main_worker(gpu, save_dir, ngpus_per_node, args):
                                                  pert_order=train_loader.dataset.display_axis_order)
                     results.append(res)
                 res = np.concatenate(results, axis=1)
-                scipy.misc.imsave(os.path.join(save_dir, 'images', 'tr_vis_conditioned_epoch%d-gpu%s.png' % (epoch, args.gpu)),
-                                  res.transpose((1, 2, 0)))
+                imageio.imwrite(os.path.join(save_dir, 'images', 'tr_vis_conditioned_epoch%d-gpu%s.png' % (epoch, args.gpu)), res.transpose((1, 2, 0)))
                 if writer is not None:
                     writer.add_image('tr_vis/sampled', torch.as_tensor(res), epoch)
 
