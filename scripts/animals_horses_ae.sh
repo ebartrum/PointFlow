@@ -29,7 +29,7 @@ python train.py \
     --save_freq 50 \
     --viz_freq 1 \
     --log_freq 1 \
-    --val_freq 1000000 \
+    --val_freq 10 \
     --use_deterministic_encoder \
     --prior_weight 0 \
     --entropy_weight 0
