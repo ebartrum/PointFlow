@@ -141,16 +141,11 @@ def evaluate_gen(model, args):
 
 def main(args):
     model = PointFlow(args)
-
-    def _transform_(m):
-        return nn.DataParallel(m)
-
     model = model.cuda()
-    model.multi_gpu_wrapper(_transform_)
 
     print("Resume Path:%s" % args.resume_checkpoint)
     checkpoint = torch.load(args.resume_checkpoint)
-    model.load_state_dict(checkpoint)
+    model.load_state_dict(checkpoint['model'])
     model.eval()
 
     with torch.no_grad():
