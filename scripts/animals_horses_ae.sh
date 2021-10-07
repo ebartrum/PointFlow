@@ -26,7 +26,7 @@ python train.py \
     --batch_size ${batch_size} \
     --zdim ${zdim} \
     --epochs ${epochs} \
-    --save_freq 50 \
+    --save_freq 10 \
     --viz_freq 1 \
     --log_freq 1 \
     --val_freq 10 \
