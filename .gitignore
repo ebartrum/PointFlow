@@ -21,3 +21,6 @@ checkpoint
 
 torchdiffeq/
 demo/
+
+._*
+.DS_Store
